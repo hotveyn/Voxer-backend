@@ -18,8 +18,8 @@ class Children extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function consultaions(): HasMany
+    public function consultations(): HasMany
     {
-        return $this->hasMany(Consultaion::class);
+        return $this->hasMany(Consultation::class);
     }
 }

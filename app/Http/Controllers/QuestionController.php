@@ -31,7 +31,7 @@ class QuestionController extends Controller
     {
         $question = $category->questions->where("id", $problem->id)->first();
 
-        if(!$question->consultaions->count()){
+        if(!$question->consultations->count()){
             $question->delete();
             return ResponseService::success($question);
         }

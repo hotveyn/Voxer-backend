@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AdminAreaMiddleware;
 use App\Http\Middleware\ConsultantAreaMiddleware;
+use App\Http\Middleware\ParentAreaMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => AdminAreaMiddleware::class,
-        'consultant' => ConsultantAreaMiddleware::class
+        'consultant' => ConsultantAreaMiddleware::class,
+        'parent' => ParentAreaMiddleware::class,
     ];
 }

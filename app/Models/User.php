@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function consultations(): HasMany
     {
-        return $this->hasMany(Consultaion::class);
+        return $this->hasMany(Consultation::class);
     }
 
     public function type(): BelongsTo

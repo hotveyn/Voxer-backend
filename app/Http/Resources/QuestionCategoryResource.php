@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class OrganizationResource extends JsonResource
+class QuestionCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class OrganizationResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            "name" => $this->name,
-            "region" => $this->region
-        ];
+        return parent::toArray($request);
     }
 }

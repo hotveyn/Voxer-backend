@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ConsultaionController;
+use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\ConsultationRequestController;
+use App\Http\Controllers\ConsultationReviewController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\QuestionCategoryController;
 use App\Http\Controllers\QuestionController;
@@ -77,6 +79,17 @@ Route::prefix("categories")->group(function () {
 
 Route::prefix("consultations")->group(function () {
     Route::middleware("auth:api")->group(function () {
-        Route::get("", [ConsultaionController::class, 'index']);
+        Route::get("", [ConsultationController::class, 'index']);
+        Route::post("", [ConsultationController::class, 'store']);
+        Route::get("{consultation}", [ConsultationController::class, 'indexOne']);
+
+
+        //todo спросить у сани
+        Route::middleware("consultant")->group(function () {
+            Route::patch("{consultation}", [ConsultationRequestController::class, "update"]);
+        });
+        Route::middleware("parent")->group(function () {
+            Route::patch("{consultation}", [ConsultationReviewController::class, "update"]);
+        });
     });
 });

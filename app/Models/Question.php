@@ -13,9 +13,9 @@ class Question extends Model
 
     protected $guarded = [];
 
-    public function consultaions(): HasMany
+    public function consultations(): HasMany
     {
-        return $this->hasMany(Consultaion::class);
+        return $this->hasMany(Consultation::class);
     }
 
     public function questionCategory(): BelongsTo
