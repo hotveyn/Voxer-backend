@@ -17,9 +17,9 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
-    public function company(): BelongsTo
+    public function organization(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Organization::class);
     }
 
     public function questionCategory(): BelongsTo
@@ -30,6 +30,11 @@ class User extends Authenticatable
     public function children(): HasMany
     {
         return $this->hasMany(Children::class);
+    }
+
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultaion::class);
     }
 
     public function type(): BelongsTo

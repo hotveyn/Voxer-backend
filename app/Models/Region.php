@@ -14,8 +14,8 @@ class Region extends Model
     /**
      * @return HasMany
      */
-    public function companies(): HasMany
+    public function organization(): HasMany
     {
-        return $this->hasMany(Company::class);
+        return $this->hasMany(Organization::class);
     }
 }

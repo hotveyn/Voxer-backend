@@ -10,7 +10,7 @@ class ResponseService
 {
     public static function success(mixed $data = [], int $code = 200): Response|Application|ResponseFactory
     {
-        if(count($data) !== 0){
+        if($data){
             return response([
                 "data" => $data,
                 "status" => "ok"

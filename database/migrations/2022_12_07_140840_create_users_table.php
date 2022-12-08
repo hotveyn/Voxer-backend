@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use App\Models\Organization;
 use App\Models\QuestionCategory;
 use App\Models\Type;
 use Illuminate\Database\Migrations\Migration;
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->foreignIdFor(Type::class)->constrained();
             $table->foreignIdFor(QuestionCategory::class)->nullable()->constrained();
-            $table->foreignIdFor(Company::class)->nullable()->constrained();
+            $table->foreignIdFor(Organization::class)->nullable()->constrained();
             $table->string('password');
             $table->string('api_token')->nullable();
             $table->timestamps();

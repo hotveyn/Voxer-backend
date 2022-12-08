@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Company extends Model
+class Organization extends Model
 {
     use HasFactory;
 
@@ -15,5 +15,10 @@ class Company extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function consultants()
+    {
+        return $this->hasMany(User::class);
     }
 }

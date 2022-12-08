@@ -23,6 +23,11 @@ class Consultaion extends Model
         return $this->hasOne(ConsultaionRequest::class);
     }
 
+    public function consultant()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function children(): BelongsTo
     {
         return $this->belongsTo(Children::class);

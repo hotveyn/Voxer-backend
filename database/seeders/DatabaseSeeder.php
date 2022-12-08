@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Consultaion;
 use App\Models\ConsultaionRequest;
 use App\Models\ConsultaionReview;
+use App\Models\Organization;
 use App\Models\Question;
 use App\Models\QuestionCategory;
 use App\Models\Region;
@@ -30,12 +31,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         Region::factory(5)->create()->each(function (Region $region) {
-            Company::factory(3)->create([
+            Organization::factory(3)->create([
                 "region_id" => $region->id
-            ])->each(function (Company $company) {
-                QuestionCategory::factory(1)->create()->each(function (QuestionCategory $questionCategory) use ($company) {
+            ])->each(function (Organization $organization) {
+                QuestionCategory::factory(1)->create()->each(function (QuestionCategory $questionCategory) use ($organization) {
                     User::factory(1)->create([
-                        "company_id" => $company->id,
+                        "organization_id" => $organization->id,
                         "question_category_id" => $questionCategory->id,
                     ])->each(function (User $user) {
                         QuestionCategory::factory(1)->create()->each(function (QuestionCategory $questionCategory) use ($user) {
@@ -44,9 +45,10 @@ class DatabaseSeeder extends Seeder
                             ])->each(function (Question $question) use ($user) {
                                 Children::factory(1)->create([
                                     "user_id" => $user->id
-                                ])->each(function (Children $children) use ($question) {
+                                ])->each(function (Children $children) use ($question, $user) {
                                     Consultaion::factory(2)->create([
                                         "children_id" => $children->id,
+                                        "user_id"=>$user->id,
                                         "question_id" => $question->id
                                     ])->each(function (Consultaion $consultaion) {
                                         ConsultaionRequest::factory(1)->create([
