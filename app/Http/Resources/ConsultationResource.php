@@ -20,8 +20,7 @@ class ConsultationResource extends JsonResource
             "question" => QuestionResource::make($this->question),
             "consultant" => ConsultantResource::make($this->user),
             "review" => $this->ConsultationReview,
-            "request" => $this->ConsultationRequest,
-
+            "request" => ConsultationRequestResource::make($this->ConsultationRequest),
         ];
     }
 }
