@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ConsultantRequest;
 use App\Http\Requests\UserLoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\Organization;
 use App\Models\Region;
 use App\Models\User;
@@ -38,7 +39,7 @@ class UserController extends Controller
 
     public function consultantInfo(Region $region, Organization $organization): Response|Application|ResponseFactory
     {
-        return ResponseService::success([$organization->consultants]);
+        return ResponseService::success($organization->consultants);
     }
 
     public function consultantStore(ConsultantRequest $request, Region $region, Organization $organization): Response|Application|ResponseFactory
@@ -55,19 +56,26 @@ class UserController extends Controller
             "question_category_id" => fake()->numberBetween(1,30)
         ]);
 
-        return ResponseService::success([$consultant], 201);
+        return ResponseService::success($consultant, 201);
     }
 
     public function consultantUpdate(ConsultantRequest $request, Region $region, Organization $organization, User $consultant): Response|Application|ResponseFactory
     {
         $consultant->update($request->validated());
 
-        return ResponseService::success([$consultant]);
+        return ResponseService::success($consultant);
     }
     public function consultantDelete(Region $region, Organization $organization, User $consultant): Response|Application|ResponseFactory
     {
         $consultant->delete();
 
-        return ResponseService::success([$consultant]);
+        return ResponseService::success($consultant);
+    }
+
+    public function index()
+    {
+//        dd(auth()->user());
+//        return response( auth()->user() );
+        return ResponseService::success( UserResource::make(auth()->user()));
     }
 }

@@ -43,8 +43,7 @@ class ConsultationController extends Controller
             case 3:
                 return ResponseService::success(ConsultationResource::make($consultation));
             case 2:
-                $consultation = $user->consultations->where("id", $consultation->id)->first();
-                if ($consultation->exists()) {
+                if ($user->consultations->where("id", $consultation->id)->count() > 0) {
                     return ResponseService::success(ConsultationResource::make($consultation));
                 }
                 return ResponseService::error("Эта консультация не пренадлежит данному консультанту");

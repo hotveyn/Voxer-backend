@@ -16,8 +16,13 @@ class ConsultationRequestResource extends JsonResource
     public function toArray($request)
     {
         return [
-
-
+            "id"=>$this->id,
+            "status"=>StatusResource::make($this->status),
+            "date"=>$this->date,
+            "need_date"=>$this->need_date,
+            "description"=>$this->description,
+            "reason"=>$this->reason,
+            "result"=>$this->result,
         ];
     }
 }

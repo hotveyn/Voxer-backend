@@ -15,13 +15,13 @@ class ConsultationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "consultation"=>[
-                "kid" => ChildrenResource::make($this->children),
-                "question" => QuestionResource::make($this->question),
-                "consultant" => ConsultantResource::make($this->user),
-                "review" => $this->ConsultationReview,
-                "request" => $this->ConsultationRequest,
-            ]
+            "id"=>$this->id,
+            "kid" => ChildrenResource::make($this->children),
+            "question" => QuestionResource::make($this->question),
+            "consultant" => ConsultantResource::make($this->user),
+            "review" => $this->ConsultationReview,
+            "request" => $this->ConsultationRequest,
+
         ];
     }
 }
