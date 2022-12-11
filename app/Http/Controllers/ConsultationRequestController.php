@@ -13,11 +13,22 @@ class ConsultationRequestController extends Controller
 {
     public static function update(ConsultationRequestUpdateRequest $request, Consultation $consultation)
     {
+        $date = $request->date;
+        $reason = $request->reason;
+        $result = $request->result;
+
+        if ($date === "null") $date = null;
+        if ($reason === "null") $reason = null;
+        if ($result === "null") $result = null;
+
         $consultationRequest = $consultation->consultationRequest;
         $status = Status::where("status", $request->status)->first();
         if ($status) {
             $consultationRequest->update([
-                "status_id"=>$status->id
+                "status_id"=>$status->id,
+                "date"=>$date,
+                "reason"=>$reason,
+                "result"=>$result
             ]);
             return ResponseService::success(ConsultationResource::make($consultation));
         }
