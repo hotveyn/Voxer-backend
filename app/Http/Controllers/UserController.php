@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function consultantInfo(Region $region, Organization $organization): Response|Application|ResponseFactory
     {
-        return ResponseService::success($organization->consultants);
+        return ResponseService::success($organization->users);
     }
 
     public function consultantStore(ConsultantRequest $request, Region $region, Organization $organization): Response|Application|ResponseFactory

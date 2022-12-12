@@ -17,8 +17,7 @@ class OrganizationController extends Controller
 
     public function info(Region $region): Response|Application|ResponseFactory
     {
-        return ResponseService::success([$region->organization]);
-        //todo: Хантинг ошибки ненахода
+        return ResponseService::success($region->organization);
     }
 
     public function store(OrganizationRequest $request, Region $region): Response|Application|ResponseFactory
@@ -27,14 +26,14 @@ class OrganizationController extends Controller
             ["name" => $request->name, "region_id" => $region->id]
         );
 
-        return ResponseService::success([$organization]);
+        return ResponseService::success($organization);
     }
 
     public function update(OrganizationRequest $request, Region $region, Organization $organization): Response|Application|ResponseFactory
     {
         $organization->update($request->validated());
 
-        return ResponseService::success([$organization]);
+        return ResponseService::success($organization);
     }
 
     public function delete(Region $region, Organization $organization): Response|Application|ResponseFactory

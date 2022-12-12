@@ -18,33 +18,32 @@ class RegionController extends Controller
 {
     public function index(): Response|Application|ResponseFactory
     {
-        return ResponseService::success([Region::all()]);
+        return ResponseService::success(Region::all());
     }
 
     public function store(RegionStoreRequest $request): Response|Application|ResponseFactory
     {
         $region = Region::create($request->validated());
 
-        return ResponseService::success([$region]);
+        return ResponseService::success($region);
     }
 
     public function update(RegionStoreRequest $request, Region $region): Response|Application|ResponseFactory
     {
         $region->update($request->validated());
 
-        return ResponseService::success([$region]);
+        return ResponseService::success($region);
         //todo: Хантинг ошибки ненахода
     }
 
     public function delete(Region $region): Response|Application|ResponseFactory
     {
-        if (!$region->companies->count()) {
+        if (!$region->organization->count()) {
             $region->delete();
             return ResponseService::success($region);
         } else {
             return ResponseService::error("Регион содержит компанию");
         }
-        //todo: Хантинг ошибки ненахода
     }
 
 }

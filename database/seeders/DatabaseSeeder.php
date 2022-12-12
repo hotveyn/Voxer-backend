@@ -49,13 +49,13 @@ class DatabaseSeeder extends Seeder
                                     "children_id" => $children->id,
                                     "user_id" => $user->id,
                                     "question_id" => $question->id
-                                ])->each(function (Consultation $consultaion) {
+                                ])->each(function (Consultation $consultation) {
                                     ConsultationRequest::factory(1)->create([
-                                        "consultation_id" => $consultaion->id
+                                        "consultation_id" => $consultation->id
                                     ]);
                                     ConsultationReview::factory(1)->create([
-                                        "consultation_id" => $consultaion->id,
-                                        "code" => $consultaion->id + 100000
+                                        "consultation_id" => $consultation->id,
+                                        "code" => $consultation->id + 100000
                                     ]);
                                 });
                             });
